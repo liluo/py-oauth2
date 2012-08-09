@@ -3,7 +3,7 @@ py-oauth2
 
 #### A Python wrapper for the OAuth 2.0 specification
 
-## Installaion
+## Installation
 
 ``` bash
 easy_install py-oauth2
