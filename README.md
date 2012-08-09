@@ -11,7 +11,7 @@ easy_install py-oauth2
 ```
 
 ***
-## USage Examples
+## Usage Examples
 <https://github.com/liluo/py-oauth2/wiki>
 
 ***
