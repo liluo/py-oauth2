@@ -16,7 +16,7 @@ setup(
     author_email = 'i@liluo.org',
 
     packages = find_packages(),
-    platforms = 'Independant',
+    platforms = 'any',
     install_requires = ['httplib2'],
 
 )
