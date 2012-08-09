@@ -12,6 +12,10 @@ easy_install py-oauth2
 ## Usage Examples
 <https://github.com/liluo/py-oauth2/wiki>
 
+## License
+
+MIT
+
 ## Submitting a Pull Request
 * Fork the repository.
 * Create a topic branch.
