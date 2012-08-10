@@ -16,7 +16,15 @@ setup(
     author_email = 'i@liluo.org',
 
     packages = find_packages(),
-    platforms = 'Independant',
+    platforms = 'any',
     install_requires = ['httplib2'],
-
+    classifiers = [
+        'Environment :: Web Environment',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+        'Topic :: Software Development :: Libraries :: Python Modules'
+    ],
 )
