@@ -52,3 +52,5 @@ Submitting a Pull Request
 * Implement your feature or bug fix.
 * Add, commit, and push your changes.
 * Submit a pull request.
+
+.. vim:set filetype=rst:
