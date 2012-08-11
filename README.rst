@@ -7,12 +7,19 @@ A Python wrapper for the OAuth 2.0 specification
 Installation
 ------------
 
+pip::
+    
+    pip install py-oauth2
+
+
+easy_install::
+
     easy_install py-oauth2
 
 Usage Examples
 --------------
 
-Get access_token
+Get access_token::
 
 
     from oauth2 import Client
@@ -31,12 +38,12 @@ Get access_token
     access_token = client.auth_code.get_token(code, redirect_uri=CALLBACK)
 
 
-Get data
+Get data::
 
     ret = access_token.get('/people/%40me', alt='json')
     print ret.parsed
 
-Upload image
+Upload image::
 
     ret = access_token.post('/shuo/statuses/', text='content from py-oauth2', files={ 'image': open('/path/pic.jpg')})
     print ret.parsed
