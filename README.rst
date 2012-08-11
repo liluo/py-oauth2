@@ -1,16 +1,16 @@
-========
+=========
 py-oauth2
 =========
 
 A Python wrapper for the OAuth 2.0 specification
 
 Installation
------
+------------
 
     easy_install py-oauth2
 
 Usage Examples
------
+--------------
 
 Get access_token
 
@@ -46,7 +46,7 @@ More:
 <https://github.com/liluo/py-oauth2/wiki>
 
 Submitting a Pull Request
------
+-------------------------
 * Fork the repository.
 * Create a topic branch.
 * Implement your feature or bug fix.
