@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from libs.auth_code import AuthCode
+from libs.password import Password
 from libs.access_token import AccessToken
 from libs.request import Request
 from libs.response import Response
@@ -38,6 +39,10 @@ class Client(object):
         response = self.request(self.opts['token_method'], self.token_url(), **opts)
         opts.update(response.parsed)
         return AccessToken.from_hash(self, **opts)
+
+    @property
+    def password(self):
+        return Password(self)
 
     @property
     def auth_code(self):
