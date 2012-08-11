@@ -10,7 +10,7 @@ client = Client(KEY, SECRET,
                 token_url='https://www.douban.com/service/auth2/token')
 
 print '-' * 80
-authorize_url = client.auth_code.authorize_url(redirect_uri=CALLBACK, scope='shuo_basic_w')
+authorize_url = client.auth_code.authorize_url(redirect_uri=CALLBACK, scope='shuo_basic_w,douban_basic_common')
 print 'Go to the following link in your browser:'
 print authorize_url
 print '-' * 80

@@ -30,21 +30,8 @@ class Client(object):
         return Connection.build_url(self.site, path=self.opts['token_url'], params=params)
 
     def request(self, method, url, **opts):
-        options = { 'raise_errors': self.opts['raise_errors'],
-                    'parse': opts.pop('parse', 'json'),
-                  }
         url = Connection.build_url(self.site, path=url)
-        response = Connection.run_request(method, url, **opts)
-        response = Response(response, parse=options['parse'])
-
-        status = response.status
-        if status in (301, 302, 303, 307):
-            # redirect
-            return response
-        elif status in range(200, 400):
-            return response
-        else:
-            pass
+        response = Request(method, url, **opts).request()
         return response
 
     def get_token(self, **opts):

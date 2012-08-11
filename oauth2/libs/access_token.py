@@ -17,6 +17,7 @@ class AccessToken(object):
                       'header_format': opts.pop('header_format', 'Bearer %s'),
                       'param_name': opts.pop('param_name', 'bearer_token'),
                     }
+        self.params = opts
 
     def __repr__(self):
         return '<OAuth2 AccessToken>'
@@ -30,6 +31,18 @@ class AccessToken(object):
         opts = dict(urlparse.parse_qsl(kvform))
         return cls(client, opts.pop('access_token', ''), **opts)
 
+    def refresh(self, **opts):
+        if not getattr(self, 'refresh_token', None):
+            raise 'A refresh_token is not available'
+
+        opts = { 'client_id': self.client.id,
+                 'client_secret': self.client.secret,
+                 'refresh_token': self.refresh_token,
+                 'grant_type': 'refresh_token',
+               }
+        new_token = self.client.get_token(**opts)
+        return new_token
+
     def request(self, method, url, **opts):
         opts = self.__set_token(**opts)
         return self.client.request(method, url, **opts)
@@ -42,6 +55,9 @@ class AccessToken(object):
 
     def put(self, url, **opts):
         return self.request('PUT', url, **opts)
+
+    def patch(self, url, **opts):
+        return self.request('PATCH', url, **opts)
 
     def delete(self, url, **opts):
         return self.request('DELETE', url, **opts)

@@ -5,9 +5,9 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'py-oauth2',
-    version = '0.0.1',
-    keywords = ('Python', 'OAuth2', 'Douban', 'GitHub', 'Weibo'),
-    description = 'Python OAuth2',
+    version = '0.0.2',
+    keywords = ('Python', 'OAuth', 'OAuth2', 'Douban', 'GitHub', 'Weibo'),
+    description = 'A Python wrapper for the OAuth 2.0 specification.',
     long_description = 'Python OAuth2',
     license = 'MIT License',
 
