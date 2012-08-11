@@ -11,7 +11,7 @@ easy_install py-oauth2
 
 ## Usage Examples
 
-get access_token
+Get access_token
 
 ``` python
 from oauth2 import Client
