@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-import simplejson
 import urlparse
+import json
 
 def to_json(txt):
     try:
-        return simplejson.loads(txt)
-    except simplejson.decoder.JSONDecodeError:
+        return json.loads(txt)
+    except json.decoder.JSONDecodeError:
         return txt
 
 def to_query(txt):
