@@ -28,7 +28,7 @@ class Request(object):
         files = self.opts.pop('files', {})
         params = urllib.urlencode(self.opts)
 
-        if self.method == 'POST':
+        if self.method in ('POST', 'PUT'):
             (body, content_type) = self.__encode_files(files, self.opts) if files else (params, self.content_type)
             self.headers.update({'Content-Type': content_type})
             self.body = body
