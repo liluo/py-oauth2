@@ -5,7 +5,7 @@ import json
 def to_json(txt):
     try:
         return json.loads(txt)
-    except json.decoder.JSONDecodeError:
+    except ValueError:
         return txt
 
 def to_query(txt):
