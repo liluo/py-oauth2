@@ -1,8 +1,3 @@
-py-oauth2
-=========
-
-#### A Python wrapper for the OAuth 2.0 specification
-
 ## Installation
 pip
 ``` bash
@@ -24,7 +19,9 @@ from oauth2 import Client
 CLIENT_ID = ''
 CLIENT_SECRET = ''
 REDIRECT_URL = ''
-SCOPE = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+SCOPE = ['https://www.googleapis.com/auth/userinfo.profile', 
+          'https://www.googleapis.com/auth/userinfo.email',]
+SCOPE = ' '.join(SCOPE)
 
 client = Client(CLIENT_ID, CLIENT_SECRET,
                 site='https://www.googleapis.com/oauth2/v1',
@@ -64,10 +61,9 @@ client = Client(KEY, SECRET,
                 authorize_url='https://www.douban.com/service/auth2/auth',
                 token_url='https://www.douban.com/service/auth2/token')
 
-authorize_url = client.auth_code.authorize_url(redirect_uri=CALLBACK, scope='shuo_basic_w,douban_basic_common')
-
-......
-
+authorize_url = client.auth_code.authorize_url(redirect_uri=CALLBACK, 
+                    scope='shuo_basic_w,douban_basic_common')
+# got code
 access_token = client.auth_code.get_token(code, redirect_uri=CALLBACK)
 ```
 
@@ -81,7 +77,9 @@ print ret.parsed
 Upload image
 
 ``` python
-ret = access_token.post('/shuo/statuses/', text='content from py-oauth2', files={ 'image': open('/path/pic.jpg')})
+ret = access_token.post('/shuo/statuses/', 
+                        text='content from py-oauth2', 
+                        files={ 'image': open('/path/pic.jpg')})
 print ret.parsed
 ```
 
