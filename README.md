@@ -29,7 +29,8 @@ client = Client(CLIENT_ID, CLIENT_SECRET,
                 token_url='https://accounts.google.com/o/oauth2/token')
 
 print '-' * 80
-authorize_url = client.auth_code.authorize_url(redirect_uri=REDIRECT_URL, scope=SCOPE)
+authorize_url = client.auth_code.authorize_url(redirect_uri=REDIRECT_URL, 
+                                               scope=SCOPE)
 print 'Go to the following link in your browser:'
 print authorize_url
 
