@@ -28,11 +28,7 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h1>py-oauth2</h1>
-
-<h4>A Python wrapper for the OAuth 2.0 specification</h4>
-
-<h2>Installation</h2>
+          <h2>Installation</h2>
 
 <p>pip</p>
 
@@ -53,7 +49,9 @@
 <span class="n">CLIENT_ID</span> <span class="o">=</span> <span class="s">''</span>
 <span class="n">CLIENT_SECRET</span> <span class="o">=</span> <span class="s">''</span>
 <span class="n">REDIRECT_URL</span> <span class="o">=</span> <span class="s">''</span>
-<span class="n">SCOPE</span> <span class="o">=</span> <span class="s">'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'</span>
+<span class="n">SCOPE</span> <span class="o">=</span> <span class="p">[</span><span class="s">'https://www.googleapis.com/auth/userinfo.profile'</span><span class="p">,</span> 
+          <span class="s">'https://www.googleapis.com/auth/userinfo.email'</span><span class="p">,]</span>
+<span class="n">SCOPE</span> <span class="o">=</span> <span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SCOPE</span><span class="p">)</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">CLIENT_ID</span><span class="p">,</span> <span class="n">CLIENT_SECRET</span><span class="p">,</span>
                 <span class="n">site</span><span class="o">=</span><span class="s">'https://www.googleapis.com/oauth2/v1'</span><span class="p">,</span>
@@ -61,7 +59,8 @@
                 <span class="n">token_url</span><span class="o">=</span><span class="s">'https://accounts.google.com/o/oauth2/token'</span><span class="p">)</span>
 
 <span class="k">print</span> <span class="s">'-'</span> <span class="o">*</span> <span class="mi">80</span>
-<span class="n">authorize_url</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">auth_code</span><span class="o">.</span><span class="n">authorize_url</span><span class="p">(</span><span class="n">redirect_uri</span><span class="o">=</span><span class="n">REDIRECT_URL</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="n">SCOPE</span><span class="p">)</span>
+<span class="n">authorize_url</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">auth_code</span><span class="o">.</span><span class="n">authorize_url</span><span class="p">(</span><span class="n">redirect_uri</span><span class="o">=</span><span class="n">REDIRECT_URL</span><span class="p">,</span> 
+                                               <span class="n">scope</span><span class="o">=</span><span class="n">SCOPE</span><span class="p">)</span>
 <span class="k">print</span> <span class="s">'Go to the following link in your browser:'</span>
 <span class="k">print</span> <span class="n">authorize_url</span>
 
@@ -92,10 +91,9 @@
                 <span class="n">authorize_url</span><span class="o">=</span><span class="s">'https://www.douban.com/service/auth2/auth'</span><span class="p">,</span>
                 <span class="n">token_url</span><span class="o">=</span><span class="s">'https://www.douban.com/service/auth2/token'</span><span class="p">)</span>
 
-<span class="n">authorize_url</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">auth_code</span><span class="o">.</span><span class="n">authorize_url</span><span class="p">(</span><span class="n">redirect_uri</span><span class="o">=</span><span class="n">CALLBACK</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="s">'shuo_basic_w,douban_basic_common'</span><span class="p">)</span>
-
-<span class="o">......</span>
-
+<span class="n">authorize_url</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">auth_code</span><span class="o">.</span><span class="n">authorize_url</span><span class="p">(</span><span class="n">redirect_uri</span><span class="o">=</span><span class="n">CALLBACK</span><span class="p">,</span> 
+                    <span class="n">scope</span><span class="o">=</span><span class="s">'shuo_basic_w,douban_basic_common'</span><span class="p">)</span>
+<span class="c"># got code</span>
 <span class="n">access_token</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">auth_code</span><span class="o">.</span><span class="n">get_token</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">redirect_uri</span><span class="o">=</span><span class="n">CALLBACK</span><span class="p">)</span>
 </pre></div>
 
@@ -107,7 +105,9 @@
 
 <p>Upload image</p>
 
-<div class="highlight"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'/shuo/statuses/'</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">'content from py-oauth2'</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="p">{</span> <span class="s">'image'</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s">'/path/pic.jpg'</span><span class="p">)})</span>
+<div class="highlight"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'/shuo/statuses/'</span><span class="p">,</span> 
+                        <span class="n">text</span><span class="o">=</span><span class="s">'content from py-oauth2'</span><span class="p">,</span> 
+                        <span class="n">files</span><span class="o">=</span><span class="p">{</span> <span class="s">'image'</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s">'/path/pic.jpg'</span><span class="p">)})</span>
 <span class="k">print</span> <span class="n">ret</span><span class="o">.</span><span class="n">parsed</span>
 </pre></div>
 
