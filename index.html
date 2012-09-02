@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Py-oauth2 by liluo</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Py-oauth2</h1>
+        <h2>A Python wrapper for the OAuth 2.0 specification</h2>
+        <a href="https://github.com/liluo/py-oauth2" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>py-oauth2</h1>
+
+<h4>A Python wrapper for the OAuth 2.0 specification</h4>
+
+<h2>Installation</h2>
+
+<p>pip</p>
+
+<div class="highlight"><pre>pip install py-oauth2
+</pre></div>
+
+<p>easy_install</p>
+
+<div class="highlight"><pre>easy_install py-oauth2
+</pre></div>
+
+<h2>Usage Examples</h2>
+
+<h4>Demo for Google</h4>
+
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">oauth2</span> <span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">CLIENT_ID</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">CLIENT_SECRET</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">REDIRECT_URL</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">SCOPE</span> <span class="o">=</span> <span class="s">'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">CLIENT_ID</span><span class="p">,</span> <span class="n">CLIENT_SECRET</span><span class="p">,</span>
+                <span class="n">site</span><span class="o">=</span><span class="s">'https://www.googleapis.com/oauth2/v1'</span><span class="p">,</span>
+                <span class="n">authorize_url</span><span class="o">=</span><span class="s">'https://accounts.google.com/o/oauth2/auth'</span><span class="p">,</span>
+                <span class="n">token_url</span><span class="o">=</span><span class="s">'https://accounts.google.com/o/oauth2/token'</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">'-'</span> <span class="o">*</span> <span class="mi">80</span>
+<span class="n">authorize_url</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">auth_code</span><span class="o">.</span><span class="n">authorize_url</span><span class="p">(</span><span class="n">redirect_uri</span><span class="o">=</span><span class="n">REDIRECT_URL</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="n">SCOPE</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">'Go to the following link in your browser:'</span>
+<span class="k">print</span> <span class="n">authorize_url</span>
+
+<span class="n">code</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">'Enter the verification code and hit ENTER when you</span><span class="se">\'</span><span class="s">re done:'</span><span class="p">)</span>
+<span class="n">code</span> <span class="o">=</span> <span class="n">code</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="n">access_token</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">auth_code</span><span class="o">.</span><span class="n">get_token</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">redirect_uri</span><span class="o">=</span><span class="n">REDIRECT_URL</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">'token'</span><span class="p">,</span> <span class="n">access_token</span><span class="o">.</span><span class="n">headers</span>
+
+<span class="k">print</span> <span class="s">'-'</span> <span class="o">*</span> <span class="mi">80</span>
+<span class="k">print</span> <span class="s">'get user info'</span> 
+<span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/userinfo'</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">ret</span><span class="o">.</span><span class="n">parsed</span>
+
+</pre></div>
+
+<h3>Demo for Douban</h3>
+
+<p>Get access_token</p>
+
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">oauth2</span> <span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">KEY</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">SECRET</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">CALLBACK</span> <span class="o">=</span> <span class="s">''</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">KEY</span><span class="p">,</span> <span class="n">SECRET</span><span class="p">,</span> 
+                <span class="n">site</span><span class="o">=</span><span class="s">'https://api.douban.com'</span><span class="p">,</span> 
+                <span class="n">authorize_url</span><span class="o">=</span><span class="s">'https://www.douban.com/service/auth2/auth'</span><span class="p">,</span>
+                <span class="n">token_url</span><span class="o">=</span><span class="s">'https://www.douban.com/service/auth2/token'</span><span class="p">)</span>
+
+<span class="n">authorize_url</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">auth_code</span><span class="o">.</span><span class="n">authorize_url</span><span class="p">(</span><span class="n">redirect_uri</span><span class="o">=</span><span class="n">CALLBACK</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="s">'shuo_basic_w,douban_basic_common'</span><span class="p">)</span>
+
+<span class="o">......</span>
+
+<span class="n">access_token</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">auth_code</span><span class="o">.</span><span class="n">get_token</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">redirect_uri</span><span class="o">=</span><span class="n">CALLBACK</span><span class="p">)</span>
+</pre></div>
+
+<p>Get data</p>
+
+<div class="highlight"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/people/%40me'</span><span class="p">,</span> <span class="n">alt</span><span class="o">=</span><span class="s">'json'</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">ret</span><span class="o">.</span><span class="n">parsed</span>
+</pre></div>
+
+<p>Upload image</p>
+
+<div class="highlight"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'/shuo/statuses/'</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">'content from py-oauth2'</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="p">{</span> <span class="s">'image'</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s">'/path/pic.jpg'</span><span class="p">)})</span>
+<span class="k">print</span> <span class="n">ret</span><span class="o">.</span><span class="n">parsed</span>
+</pre></div>
+
+<h4>More:</h4>
+
+<p><a href="https://github.com/liluo/py-oauth2/wiki">https://github.com/liluo/py-oauth2/wiki</a></p>
+
+<p><a href="https://github.com/liluo/py-oauth2/wiki/Google">Demo for Google</a></p>
+
+<p><a href="https://github.com/liluo/py-oauth2/wiki/Douban">Demo for Douban</a></p>
+
+<p><a href="https://github.com/liluo/py-oauth2/wiki/GitHub">Demo for GitHub</a></p>
+
+<p><a href="https://github.com/liluo/py-oauth2/wiki/Weibo">Demo for Weibo</a></p>
+
+<h2>License</h2>
+
+<p>MIT</p>
+
+<h2>Submitting a Pull Request</h2>
+
+<ul>
+<li>Fork the repository.</li>
+<li>Create a topic branch.</li>
+<li>Implement your feature or bug fix.</li>
+<li>Add, commit, and push your changes.</li>
+<li>Submit a pull request.</li>
+</ul>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/liluo/py-oauth2/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/liluo/py-oauth2/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/liluo/py-oauth2"></a> is maintained by <a href="https://github.com/liluo">liluo</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
