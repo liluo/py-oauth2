@@ -10,10 +10,17 @@ def to_json(txt):
 
 def to_query(txt):
     qs = urlparse.parse_qsl(txt)
-    return dict(qs)
+    ret = dict(qs)
+    return _check_expires_in(ret)
 
 def to_text(txt):
     return txt
+
+def _check_expires_in(ret):
+    expires_in = ret.get('expires_in')
+    if expires_in and expires_in.isdigit():
+        ret['expires_in'] = int(expires_in)
+    return ret
 
 PARSERS = {
         'text': to_text,

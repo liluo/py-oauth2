@@ -10,7 +10,7 @@ class AccessToken(object):
    
         [setattr(self, attr, opts.pop(attr)) for attr in ['refresh_token', 'expires_in', 'expires_at'] if opts.has_key(attr)]
 
-        if getattr(self, 'expires_in', None) and isinstance(self.expires_in, int):
+        if hasattr(self, 'expires_in') and str(self.expires_in).isdigit():
             self.expires_at = int(time.time()) + int(self.expires_in)
 
         self.opts = { 'mode': opts.pop('mode', 'header'),
