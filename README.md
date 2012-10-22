@@ -1,4 +1,7 @@
 ## Installation
+
+*Not compatible python-oauth2, if you used python-oauth2 for OAuth 1.0, don't download and setup py-oauth2.*
+
 pip
 ``` bash
 pip install py-oauth2
