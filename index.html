@@ -33,8 +33,6 @@
       <section id="main_content" class="inner">
         <h2>Installation</h2>
 
-<p><em>Not compatible python-oauth2, if you used python-oauth2 for OAuth 1.0, don't download and setup py-oauth2.</em></p>
-
 <p>pip</p>
 
 <div class="highlight"><pre>pip install py-oauth2
@@ -45,11 +43,23 @@
 <div class="highlight"><pre>easy_install py-oauth2
 </pre></div>
 
+<h2>Warning</h2>
+
+<p>if the py-oauth2 version is less than 0.0.5,pls use <code>import oauth2</code> instead.</p>
+
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">oauth2</span> <span class="kn">import</span> <span class="n">Client</span>
+</pre></div>
+
+<p>else</p>
+
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyoauth2</span> <span class="kn">import</span> <span class="n">Client</span>
+</pre></div>
+
 <h2>Usage Examples</h2>
 
 <h4>Demo for Google</h4>
 
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">oauth2</span> <span class="kn">import</span> <span class="n">Client</span>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyoauth2</span> <span class="kn">import</span> <span class="n">Client</span>
 
 <span class="n">CLIENT_ID</span> <span class="o">=</span> <span class="s">''</span>
 <span class="n">CLIENT_SECRET</span> <span class="o">=</span> <span class="s">''</span>
@@ -85,7 +95,7 @@
 
 <p>Get access_token</p>
 
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">oauth2</span> <span class="kn">import</span> <span class="n">Client</span>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyoauth2</span> <span class="kn">import</span> <span class="n">Client</span>
 
 <span class="n">KEY</span> <span class="o">=</span> <span class="s">''</span>
 <span class="n">SECRET</span> <span class="o">=</span> <span class="s">''</span>
