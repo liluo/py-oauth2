@@ -16,6 +16,18 @@ easy_install::
 
     easy_install py-oauth2
 
+Warning
+-------
+
+if the py-oauth2 version is less than 0.0.5,pls use `import oauth2` instead.::
+
+    from oauth2 import Client
+
+else::
+
+    from pyoauth2 import Client
+
+
 Usage Examples
 --------------
 
