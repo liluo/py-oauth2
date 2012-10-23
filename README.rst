@@ -23,7 +23,7 @@ Demo for Google
 ---------------
 Get user info::
 
-    from oauth2 import Client
+    from pyoauth2 import Client
 
     CLIENT_ID = ''
     CLIENT_SECRET = ''
@@ -55,7 +55,7 @@ Demo for Douban
 ---------------
 Get access_token::
 
-    from oauth2 import Client
+    from pyoauth2 import Client
 
     KEY = ''
     SECRET = ''

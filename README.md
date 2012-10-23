@@ -1,7 +1,5 @@
 ## Installation
 
-*Not compatible python-oauth2, if you used python-oauth2 for OAuth 1.0, don't download and setup py-oauth2.*
-
 pip
 ``` bash
 pip install py-oauth2
@@ -12,12 +10,26 @@ easy_install
 easy_install py-oauth2
 ```
 
+## Warning
+
+if the py-oauth2 version is less than 0.0.5,pls use `import oauth2` instead.
+
+``` python
+from oauth2 import Client
+```
+
+else
+
+``` python
+from pyoauth2 import Client
+```
+
 ## Usage Examples
 
 #### Demo for Google
 
 ``` python
-from oauth2 import Client
+from pyoauth2 import Client
 
 CLIENT_ID = ''
 CLIENT_SECRET = ''
@@ -54,7 +66,7 @@ print ret.parsed
 Get access_token
 
 ``` python
-from oauth2 import Client
+from pyoauth2 import Client
 
 KEY = ''
 SECRET = ''

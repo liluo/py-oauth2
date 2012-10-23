@@ -1,4 +1,4 @@
-from oauth2 import Client
+from pyoauth2 import Client
 
 KEY = ''
 SECRET = ''

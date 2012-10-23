@@ -1,5 +1,5 @@
-from oauth2 import Client
-from oauth2 import AccessToken
+from pyoauth2 import Client
+from pyoauth2 import AccessToken
 
 KEY = ''
 SECRET = ''
