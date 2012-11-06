@@ -114,13 +114,13 @@
 
 <p>Get data</p>
 
-<div class="highlight"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/people/%40me'</span><span class="p">,</span> <span class="n">alt</span><span class="o">=</span><span class="s">'json'</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/v2/user/~me'</span><span class="p">)</span>
 <span class="k">print</span> <span class="n">ret</span><span class="o">.</span><span class="n">parsed</span>
 </pre></div>
 
 <p>Upload image</p>
 
-<div class="highlight"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'/shuo/statuses/'</span><span class="p">,</span> 
+<div class="highlight"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'/shuo/v2/statuses/'</span><span class="p">,</span> 
                         <span class="n">text</span><span class="o">=</span><span class="s">'content from py-oauth2'</span><span class="p">,</span> 
                         <span class="n">files</span><span class="o">=</span><span class="p">{</span> <span class="s">'image'</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s">'/path/pic.jpg'</span><span class="p">)})</span>
 <span class="k">print</span> <span class="n">ret</span><span class="o">.</span><span class="n">parsed</span>
@@ -132,7 +132,11 @@
 
 <p><a href="https://github.com/liluo/py-oauth2/wiki/Google">Demo for Google</a></p>
 
-<p><a href="https://github.com/liluo/py-oauth2/wiki/Douban">Demo for Douban</a></p>
+<p><a href="https://github.com/liluo/py-oauth2/wiki/Douban">Demo for Douban(auth with code)</a></p>
+
+<p><a href="https://github.com/liluo/py-oauth2/wiki/Douban2">Demo for Douban(auth with token)</a></p>
+
+<p><a href="https://github.com/liluo/py-oauth2/wiki/Douban3">Demo for Douban(auth with password)</a></p>
 
 <p><a href="https://github.com/liluo/py-oauth2/wiki/GitHub">Demo for GitHub</a></p>
 
