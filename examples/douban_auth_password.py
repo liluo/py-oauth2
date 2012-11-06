@@ -5,18 +5,16 @@ KEY = ''
 SECRET = ''
 CALLBACK = ''
 
+user_email = ''
+user_password = ''
+
 client = Client(KEY, SECRET, 
                 site='https://api.douban.com', 
                 authorize_url='https://www.douban.com/service/auth2/auth',
                 token_url='https://www.douban.com/service/auth2/token')
 
-code = raw_input('Enter the verification code and hit ENTER when you\'re done:')
-client.auth_code.get_token(code, redirect_uri=CALLBACK)
-access_token = AccessToken(client, code)
-print '-' * 80
-print 'access token'
-print access_token.headers
+access_token = client.password.get_token(user_email, user_password)
 
 print '-' * 80
-ret = access_token.get('/people/%40me', alt='json')
+ret = access_token.get('/v2/user/~me')
 print ret.parsed

@@ -85,12 +85,12 @@ Get access_token::
 
 Get data::
 
-    ret = access_token.get('/people/%40me', alt='json')
+    ret = access_token.get('/v2/user/~me')
     print ret.parsed
 
 Upload image::
 
-    ret = access_token.post('/shuo/statuses/', text='content from py-oauth2', files={ 'image': open('/path/pic.jpg')})
+    ret = access_token.post('/shuo/v2/statuses/', text='content from py-oauth2', files={ 'image': open('/path/pic.jpg')})
     print ret.parsed
 
 
@@ -100,7 +100,11 @@ More:
 
 `Demo for Google <https://github.com/liluo/py-oauth2/wiki/Google>`_
 
-`Demo for Douban <https://github.com/liluo/py-oauth2/wiki/Douban>`_
+`Demo for Douban(auth with code) <https://github.com/liluo/py-oauth2/wiki/Douban>`_
+
+`Demo for Douban(auth with token) <https://github.com/liluo/py-oauth2/wiki/Douban2>`_
+
+`Demo for Douban(auth with password) <https://github.com/liluo/py-oauth2/wiki/Douban3>`_
 
 `Demo for GitHub <https://github.com/liluo/py-oauth2/wiki/GitHub>`_
 

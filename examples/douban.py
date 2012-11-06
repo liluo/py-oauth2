@@ -22,10 +22,10 @@ print 'token', access_token.headers
 
 print '-' * 80
 print 'get @me info' 
-ret = access_token.get('/people/%40me', alt='json')
+ret = access_token.get('/v2/user/~me')
 print ret.parsed
 
 print '-' * 80
 print 'post miniblog...'
-ret = access_token.post('/shuo/statuses/', text='hello oauth2, from py-oauth2')
+ret = access_token.post('/shuo/v2/statuses/', text='hello oauth2, from py-oauth2')
 print ret.parsed
