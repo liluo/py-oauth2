@@ -85,7 +85,7 @@ class Request(object):
 
 
 def guess_filename(obj):
-    name = getattr(obj, 'name', None)
+    name = getattr(obj, 'name', '')
     if all([name, not name.startswith('<'), not name.endswith('>')]):
         return name
 
