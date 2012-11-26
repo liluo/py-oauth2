@@ -79,7 +79,7 @@ class AccessToken(object):
         elif mode == 'body':
             body = opts.get('body', {})
             if isinstance(body, dict):
-                opts['body'][self.opts['param_name']] = token
+                opts['body'][self.opts['param_name']] = self.token
             else:
                 opts['body'] += "&%s=%s"%(self.opts['param_name'], self.token)
         else:
