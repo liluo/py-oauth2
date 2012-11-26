@@ -26,7 +26,7 @@ class Request(object):
     def request(self):
         parse = self.opts.pop('parse', 'json')
         files = self.opts.pop('files', {})
-        params = urllib.urlencode(self.opts)
+        params = urllib.urlencode(params_u2utf8(self.opts))
 
         if self.method in ('POST', 'PUT'):
             (body, content_type) = self.__encode_files(files, self.opts) if files else (params, self.content_type)
@@ -100,3 +100,7 @@ def tuples(obj):
         else:
             return obj
     raise ValueError('not a dict or a list of 2-tuples required')
+
+def params_u2utf8(params):
+    u2utf8 = lambda obj: isinstance(obj, unicode) and obj.encode('utf-8') or obj
+    return dict([(k, u2utf8(v)) for k, v in params.items()])
