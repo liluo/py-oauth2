@@ -43,24 +43,24 @@ class AccessToken(object):
         new_token = self.client.get_token(**opts)
         return new_token
 
-    def request(self, method, url, **opts):
+    def request(self, method, uri, **opts):
         opts = self.__set_token(**opts)
-        return self.client.request(method, url, **opts)
+        return self.client.request(method, uri, **opts)
 
-    def get(self, url, **opts):
-        return self.request('GET', url, **opts)
+    def get(self, uri, **opts):
+        return self.request('GET', uri, **opts)
 
-    def post(self, url, **opts):
-        return self.request('POST', url, **opts)
+    def post(self, uri, **opts):
+        return self.request('POST', uri, **opts)
 
-    def put(self, url, **opts):
-        return self.request('PUT', url, **opts)
+    def put(self, uri, **opts):
+        return self.request('PUT', uri, **opts)
 
-    def patch(self, url, **opts):
-        return self.request('PATCH', url, **opts)
+    def patch(self, uri, **opts):
+        return self.request('PATCH', uri, **opts)
 
-    def delete(self, url, **opts):
-        return self.request('DELETE', url, **opts)
+    def delete(self, uri, **opts):
+        return self.request('DELETE', uri, **opts)
 
     @property
     def headers(self):

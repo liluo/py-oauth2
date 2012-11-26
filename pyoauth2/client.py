@@ -30,9 +30,9 @@ class Client(object):
     def token_url(self, params={}):
         return Connection.build_url(self.site, path=self.opts['token_url'], params=params)
 
-    def request(self, method, url, **opts):
-        url = Connection.build_url(self.site, path=url)
-        response = Request(method, url, **opts).request()
+    def request(self, method, uri, **opts):
+        uri = Connection.build_url(self.site, path=uri)
+        response = Request(method, uri, **opts).request()
         return response
 
     def get_token(self, **opts):

@@ -9,9 +9,9 @@ from .multipart import build_multipart
 
 class Request(object):
 
-    def __init__(self, method, url, **opts):
+    def __init__(self, method, uri, **opts):
         self.method = method
-        self.url = url
+        self.uri = uri
         self.headers = opts.pop('headers', {})
         self.body = opts.pop('body', None)
 
@@ -34,7 +34,7 @@ class Request(object):
             self.body = body
 
         elif self.opts:
-            self.url += '&%s'%params if '?' in self.url else '?%s'%params
+            self.uri += '&%s'%params if '?' in self.uri else '?%s'%params
 
         response = self.send()
         response = Response(response, parse=parse)
@@ -52,7 +52,7 @@ class Request(object):
         return response
 
     def send(self):
-        return self.http.request(self.url, self.method, body=self.body, headers=self.headers)
+        return self.http.request(self.uri, self.method, body=self.body, headers=self.headers)
 
     def __encode_files(self, files, params):
         if not files or isinstance(files, str):
