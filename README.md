@@ -115,6 +115,10 @@ print ret.parsed
 
 [Demo for Weibo](https://github.com/liluo/py-oauth2/wiki/Weibo)
 
+[Demo for QQ](https://github.com/liluo/py-oauth2/wiki/QQ-OAuth-2.0)
+
+[Demo for Taobao](https://github.com/liluo/py-oauth2/wiki/Taobao-OAuth-2.0)
+
 ## License
 
 MIT
