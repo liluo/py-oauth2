@@ -110,6 +110,11 @@ More:
 
 `Demo for Weibo  <https://github.com/liluo/py-oauth2/wiki/Weibo>`_
 
+`Demo for QQ  <https://github.com/liluo/py-oauth2/wiki/QQ-OAuth-2.0>`_
+
+`Demo for Taobao  <https://github.com/liluo/py-oauth2/wiki/Taobao-OAuth-2.0>`_
+
+`Demo for Box.com  <https://github.com/liluo/py-oauth2/wiki/Box.com>`_
 
 Submitting a Pull Request
 -------------------------

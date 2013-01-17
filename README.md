@@ -119,6 +119,8 @@ print ret.parsed
 
 [Demo for Taobao](https://github.com/liluo/py-oauth2/wiki/Taobao-OAuth-2.0)
 
+[Demo for Box.com](https://github.com/liluo/py-oauth2/wiki/Box.com)
+
 ## License
 
 MIT
