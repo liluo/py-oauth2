@@ -116,6 +116,8 @@ More:
 
 `Demo for Box.com  <https://github.com/liluo/py-oauth2/wiki/Box.com>`_
 
+`Demo for Instagram  <https://github.com/liluo/py-oauth2/wiki/Instagram>`_
+
 Submitting a Pull Request
 -------------------------
 * Fork the repository.

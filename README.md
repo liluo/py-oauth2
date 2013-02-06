@@ -121,6 +121,8 @@ print ret.parsed
 
 [Demo for Box.com](https://github.com/liluo/py-oauth2/wiki/Box.com)
 
+[Demo for Instagram](https://github.com/liluo/py-oauth2/wiki/Instagram)
+
 ## License
 
 MIT
