@@ -1,11 +1,11 @@
 ## Installation
 
-pip
+__PIP__
 ``` bash
 pip install py-oauth2
 ```
 
-easy_install
+__Easy Install__
 ``` bash
 easy_install py-oauth2
 ```
