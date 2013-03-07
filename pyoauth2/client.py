@@ -36,8 +36,8 @@ class Client(object):
         return response
 
     def get_token(self, **opts):
-        response = self.request(self.opts['token_method'], self.token_url(), **opts)
-        opts.update(response.parsed)
+        self.response = self.request(self.opts['token_method'], self.token_url(), **opts)
+        opts.update(self.response.parsed)
         return AccessToken.from_hash(self, **opts)
 
     @property
