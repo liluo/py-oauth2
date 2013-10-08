@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import time
-import urlparse
+try:
+    import urlparse
+except ImportError:
+    import urllib.parse as urlparse
 
 class AccessToken(object):
 
@@ -8,7 +11,7 @@ class AccessToken(object):
         self.client = client
         self.token = token
    
-        [setattr(self, attr, opts.pop(attr)) for attr in ['refresh_token', 'expires_in', 'expires_at'] if opts.has_key(attr)]
+        [setattr(self, attr, opts.pop(attr)) for attr in ['refresh_token', 'expires_in', 'expires_at'] if attr in opts.keys()]
 
         if hasattr(self, 'expires_in') and str(self.expires_in).isdigit():
             self.expires_at = int(time.time()) + int(self.expires_in)

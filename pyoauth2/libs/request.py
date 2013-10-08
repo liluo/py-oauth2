@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
-import urllib
 from io import BytesIO
-from StringIO import StringIO
-from httplib2 import Http
+try:
+    from StringIO import StringIO
+    from urllib import urlencode
+except ImportError:
+    from io import StringIO
+    from urllib.parse import urlencode
+    unicode = str
+import requests
 
 from .response import Response
 from .multipart import build_multipart
@@ -16,7 +21,6 @@ class Request(object):
         self.body = opts.pop('body', None)
 
         self.disable_ssl = opts.pop('disable_ssl', True)
-        self.http = Http(disable_ssl_certificate_validation=self.disable_ssl)
         self.content_type = 'application/x-www-form-urlencoded'
         self.opts = opts
 
@@ -26,7 +30,7 @@ class Request(object):
     def request(self):
         parse = self.opts.pop('parse', 'json')
         files = self.opts.pop('files', {})
-        params = urllib.urlencode(params_u2utf8(self.opts))
+        params = urlencode(params_u2utf8(self.opts))
 
         if self.method in ('POST', 'PUT'):
             (body, content_type) = self.__encode_files(files, self.opts) if files else (params, self.content_type)
@@ -52,7 +56,8 @@ class Request(object):
         return response
 
     def send(self):
-        return self.http.request(self.uri, self.method, body=self.body, headers=self.headers)
+        return requests.request(self.method, self.uri, data=self.body, headers=self.headers, verify=(not self.disable_ssl))
+        #return self.http.request(self.uri, self.method, body=self.body, headers=self.headers)
 
     def __encode_files(self, files, params):
         if not files or isinstance(files, str):
