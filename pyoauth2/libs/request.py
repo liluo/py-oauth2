@@ -57,7 +57,6 @@ class Request(object):
 
     def send(self):
         return requests.request(self.method, self.uri, data=self.body, headers=self.headers, verify=(not self.disable_ssl))
-        #return self.http.request(self.uri, self.method, body=self.body, headers=self.headers)
 
     def __encode_files(self, files, params):
         if not files or isinstance(files, str):
