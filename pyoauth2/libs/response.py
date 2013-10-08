@@ -44,6 +44,7 @@ class Response(object):
     def __init__(self, response, **opts):
         self.body = response.text
         self.status = response.status_code
+        self.reason = response.reason
         self.content_type = response.headers.get('content-type')
 
         options = { 'parse': 'text' }
