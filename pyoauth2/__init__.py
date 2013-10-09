@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from client import Client
-from libs.access_token import AccessToken
+from .client import Client
+from .libs.access_token import AccessToken
 
-VERSION = '0.0.6'
+VERSION = '0.0.7'

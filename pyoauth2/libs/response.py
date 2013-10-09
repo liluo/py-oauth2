@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-import urlparse
+try:
+    import urlparse
+except ImportError:
+    import urllib.parse as urlparse
 import json
 
 def to_json(txt):
@@ -39,12 +42,10 @@ CONTENT_TYPES = {
 class Response(object):
 
     def __init__(self, response, **opts):
-        response, body = response
-        self.body = body
-        self.response = response
+        self.body = response.text
+        self.status = response.status_code
         self.reason = response.reason
-        self.status = response.status
-        self.content_type = response.get('content-type')
+        self.content_type = response.headers.get('content-type')
 
         options = { 'parse': 'text' }
         options.update(opts)
