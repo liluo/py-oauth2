@@ -127,6 +127,17 @@ print ret.parsed
 
 MIT
 
+## Authors
+
+This is the list of authors of py-oauth2, sorted by time:
+
+
+* liluo
+* waawal
+* qingfeng
+* alswl
+* Grigi
+
 ## Submitting a Pull Request
 * Fork the repository.
 * Create a topic branch.
