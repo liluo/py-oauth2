@@ -1,3 +1,8 @@
+# py-oauth2
+
+A Python wrapper for the OAuth 2.0 specification
+
+
 ## Installation
 
 __PIP__
@@ -8,20 +13,6 @@ pip install py-oauth2
 __Easy Install__
 ``` bash
 easy_install py-oauth2
-```
-
-## Warning
-
-if the py-oauth2 version is less than 0.0.5,pls use `import oauth2` instead.
-
-``` python
-from oauth2 import Client
-```
-
-else
-
-``` python
-from pyoauth2 import Client
 ```
 
 ## Usage Examples
