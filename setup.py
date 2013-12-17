@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'py-oauth2',
-    version = '0.0.7',
+    version = '0.0.8',
     keywords = ('Python', 'pyoauth2', 'OAuth2', 'Douban', 'GitHub', 'Weibo'),
     description = 'A Python wrapper for the OAuth 2.0 specification.',
     long_description = open('README.rst').read(),

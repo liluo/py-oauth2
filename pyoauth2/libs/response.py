@@ -1,23 +1,16 @@
 # -*- coding: utf-8 -*-
-try:
-    import urlparse
-except ImportError:
-    import urllib.parse as urlparse
-import json
+from .utils import urlparse
 
-def to_json(txt):
-    try:
-        return json.loads(txt)
-    except ValueError:
-        return txt
 
 def to_query(txt):
     qs = urlparse.parse_qsl(txt)
     ret = dict(qs)
     return _check_expires_in(ret)
 
+
 def to_text(txt):
     return txt
+
 
 def _check_expires_in(ret):
     expires_in = ret.get('expires_in')
@@ -25,31 +18,18 @@ def _check_expires_in(ret):
         ret['expires_in'] = int(expires_in)
     return ret
 
-PARSERS = {
-        'text': to_text,
-        'json': to_json,
-        'query': to_query,
-        }
-
-
-CONTENT_TYPES = {
-            'text/plain': 'text',
-            'text/javascript': 'json',
-            'application/json': 'json',
-            'application/x-www-form-urlencoded': 'query',
-            }
 
 class Response(object):
 
     def __init__(self, response, **opts):
-        self.body = response.text
-        self.status = response.status_code
+        self.resp = response
+        self.status_code = self.status = response.status_code
         self.reason = response.reason
         self.content_type = response.headers.get('content-type')
+        self.body = response.text
 
-        options = { 'parse': 'text' }
+        options = {'parse': 'text'}
         options.update(opts)
-
         self.options = options
 
     def __repr__(self):
@@ -57,6 +37,10 @@ class Response(object):
 
     @property
     def parsed(self):
-        format = self.options['parse']
-        func = PARSERS.get(format, to_text)
-        return func(self.body)
+        fmt = self.options['parse']
+        if fmt == 'json':
+            return self.resp.json()
+        elif fmt == 'query':
+            return to_query(self.body)
+        else:
+            return self.body

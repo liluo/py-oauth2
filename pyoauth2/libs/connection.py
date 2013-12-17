@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-try:
-    from urllib import urlencode
-except ImportError:
-    from urllib.parse import urlencode
+from .utils import urlencode
+
 
 class Connection(object):
 
@@ -12,6 +10,6 @@ class Connection(object):
     @classmethod
     def build_url(cls, url, path='', params={}):
         params = urlencode(params)
-        params = '?%s'%params if params else ''
-        url = path if path.startswith('http') else '%s%s'%(url, path)
-        return '%s%s'%(url, params)
+        params = '?%s' % params if params else ''
+        url = path if path.startswith(('http://', 'https://')) else '%s%s' % (url, path)
+        return '%s%s' % (url, params)

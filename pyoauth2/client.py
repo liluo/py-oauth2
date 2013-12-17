@@ -4,8 +4,8 @@ from .libs.auth_code import AuthCode
 from .libs.password import Password
 from .libs.access_token import AccessToken
 from .libs.request import Request
-from .libs.response import Response
 from .libs.connection import Connection
+
 
 class Client(object):
 
@@ -13,12 +13,11 @@ class Client(object):
         self.id = client_id
         self.secret = client_secret
         self.site = opts.pop('site', '')
-        self.opts = { 'authorize_url': '/oauth/authorize',
-                      'token_url': '/oauth/token',
-                      'token_method': 'POST',
-                      'connection_opts': {},
-                      'raise_errors': True,
-                    }
+        self.opts = {'authorize_url': '/oauth/authorize',
+                     'token_url': '/oauth/token',
+                     'token_method': 'POST',
+                     'connection_opts': {},
+                     'raise_errors': True, }
         self.opts.update(opts)
 
     def __repr__(self):

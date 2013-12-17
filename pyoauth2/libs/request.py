@@ -1,16 +1,8 @@
 # -*- coding: utf-8 -*-
-from io import BytesIO
-try:
-    from StringIO import StringIO
-    from urllib import urlencode
-except ImportError:
-    from io import StringIO
-    from urllib.parse import urlencode
-    unicode = str
 import requests
 
 from .response import Response
-from .multipart import build_multipart
+
 
 class Request(object):
 
@@ -19,31 +11,22 @@ class Request(object):
         self.uri = uri
         self.headers = opts.pop('headers', {})
         self.body = opts.pop('body', None)
-
-        self.disable_ssl = opts.pop('disable_ssl', True)
-        self.content_type = 'application/x-www-form-urlencoded'
+        self.parse = opts.pop('parse', 'json')
+        self.files = opts.pop('files', {})
         self.opts = opts
 
     def __repr__(self):
         return '<OAuth2 Request>'
 
     def request(self):
-        parse = self.opts.pop('parse', 'json')
-        files = self.opts.pop('files', {})
-        params = urlencode(params_u2utf8(self.opts))
-
         if self.method in ('POST', 'PUT'):
-            (body, content_type) = self.__encode_files(files, self.opts) if files else (params, self.content_type)
-            self.headers.update({'Content-Type': content_type})
-            self.body = body
+            response = requests.request(self.method, self.uri, data=self.opts, files=self.files, headers=self.headers)
+        else:
+            response = requests.request(self.method, self.uri, params=self.opts, headers=self.headers)
 
-        elif self.opts:
-            self.uri += '&%s'%params if '?' in self.uri else '?%s'%params
+        response = Response(response, parse=self.parse)
 
-        response = self.send()
-        response = Response(response, parse=parse)
-
-        status = response.status
+        status = response.status_code
         #TODO raise error
         if status in (301, 302, 303, 307):
             return response
@@ -54,57 +37,3 @@ class Request(object):
         elif 500 <= status < 600:
             return response
         return response
-
-    def send(self):
-        return requests.request(self.method, self.uri, data=self.body, headers=self.headers, verify=(not self.disable_ssl))
-
-    def __encode_files(self, files, params):
-        if not files or isinstance(files, str):
-            return None
-
-        fields = []
-        for k, v in tuples(files):
-            if isinstance(v, (tuple, list)):
-                fn, fp = v
-            else:
-                fn = guess_filename(v) or k
-                fp = v
-            if isinstance(fp, str):
-                fp = StringIO(fp)
-            if isinstance(fp, bytes):
-                fp = BytesIO(fp)
-
-            fields.append((k, (fn, fp.read())))
-
-        for k, vs in tuples(params):
-            if isinstance(vs, list):
-                for v in vs:
-                    fields.append((k, str(v)))
-            else:
-                fields.append((k, str(vs)))
-
-        body, content_type = build_multipart(fields)
-
-        return body, content_type
-
-
-def guess_filename(obj):
-    name = getattr(obj, 'name', '')
-    if all([name, not name.startswith('<'), not name.endswith('>')]):
-        return name
-
-def tuples(obj):
-    if isinstance(obj, dict):
-        return list(obj.items())
-    elif hasattr(obj, '__iter__'):
-        try:
-            dict(obj)
-        except ValueError:
-            pass
-        else:
-            return obj
-    raise ValueError('not a dict or a list of 2-tuples required')
-
-def params_u2utf8(params):
-    u2utf8 = lambda obj: isinstance(obj, unicode) and obj.encode('utf-8') or obj
-    return dict([(k, u2utf8(v)) for k, v in params.items()])
