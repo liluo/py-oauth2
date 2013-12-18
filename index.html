@@ -1,65 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Py-oauth2 : A Python wrapper for the OAuth 2.0 specification" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Py-oauth2 by liluo</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Py-oauth2</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Py-oauth2</h1>
+        <p class="header">A Python wrapper for the OAuth 2.0 specification</p>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/liluo/py-oauth2">View on GitHub</a>
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/liluo/py-oauth2/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/liluo/py-oauth2/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/liluo/py-oauth2">View On GitHub</a></li>
+        </ul>
 
-          <h1 id="project_title">Py-oauth2</h1>
-          <h2 id="project_tagline">A Python wrapper for the OAuth 2.0 specification</h2>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/liluo">liluo</a></p>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/liluo/py-oauth2/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/liluo/py-oauth2/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h2>Installation</h2>
+      </header>
+      <section>
+        <h1>
+<a name="py-oauth2" class="anchor" href="#py-oauth2"><span class="octicon octicon-link"></span></a>py-oauth2</h1>
 
-<p>pip</p>
+<p>A Python wrapper for the OAuth 2.0 specification</p>
 
-<div class="highlight"><pre>pip install py-oauth2
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p><strong>PIP</strong></p>
+
+<div class="highlight highlight-bash"><pre>pip install py-oauth2
 </pre></div>
 
-<p>easy_install</p>
+<p><strong>Easy Install</strong></p>
 
-<div class="highlight"><pre>easy_install py-oauth2
+<div class="highlight highlight-bash"><pre>easy_install py-oauth2
 </pre></div>
 
-<h2>Warning</h2>
+<h2>
+<a name="usage-examples" class="anchor" href="#usage-examples"><span class="octicon octicon-link"></span></a>Usage Examples</h2>
 
-<p>if the py-oauth2 version is less than 0.0.5,pls use <code>import oauth2</code> instead.</p>
+<h4>
+<a name="demo-for-google" class="anchor" href="#demo-for-google"><span class="octicon octicon-link"></span></a>Demo for Google</h4>
 
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">oauth2</span> <span class="kn">import</span> <span class="n">Client</span>
-</pre></div>
-
-<p>else</p>
-
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyoauth2</span> <span class="kn">import</span> <span class="n">Client</span>
-</pre></div>
-
-<h2>Usage Examples</h2>
-
-<h4>Demo for Google</h4>
-
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyoauth2</span> <span class="kn">import</span> <span class="n">Client</span>
+<div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">pyoauth2</span> <span class="kn">import</span> <span class="n">Client</span>
 
 <span class="n">CLIENT_ID</span> <span class="o">=</span> <span class="s">''</span>
 <span class="n">CLIENT_SECRET</span> <span class="o">=</span> <span class="s">''</span>
@@ -91,11 +86,12 @@
 
 </pre></div>
 
-<h3>Demo for Douban</h3>
+<h3>
+<a name="demo-for-douban" class="anchor" href="#demo-for-douban"><span class="octicon octicon-link"></span></a>Demo for Douban</h3>
 
 <p>Get access_token</p>
 
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyoauth2</span> <span class="kn">import</span> <span class="n">Client</span>
+<div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">pyoauth2</span> <span class="kn">import</span> <span class="n">Client</span>
 
 <span class="n">KEY</span> <span class="o">=</span> <span class="s">''</span>
 <span class="n">SECRET</span> <span class="o">=</span> <span class="s">''</span>
@@ -114,19 +110,20 @@
 
 <p>Get data</p>
 
-<div class="highlight"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/v2/user/~me'</span><span class="p">)</span>
+<div class="highlight highlight-python"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/v2/user/~me'</span><span class="p">)</span>
 <span class="k">print</span> <span class="n">ret</span><span class="o">.</span><span class="n">parsed</span>
 </pre></div>
 
 <p>Upload image</p>
 
-<div class="highlight"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'/shuo/v2/statuses/'</span><span class="p">,</span> 
+<div class="highlight highlight-python"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'/shuo/v2/statuses/'</span><span class="p">,</span> 
                         <span class="n">text</span><span class="o">=</span><span class="s">'content from py-oauth2'</span><span class="p">,</span> 
                         <span class="n">files</span><span class="o">=</span><span class="p">{</span> <span class="s">'image'</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s">'/path/pic.jpg'</span><span class="p">)})</span>
 <span class="k">print</span> <span class="n">ret</span><span class="o">.</span><span class="n">parsed</span>
 </pre></div>
 
-<h4>More:</h4>
+<h4>
+<a name="more" class="anchor" href="#more"><span class="octicon octicon-link"></span></a>More:</h4>
 
 <p><a href="https://github.com/liluo/py-oauth2/wiki">https://github.com/liluo/py-oauth2/wiki</a></p>
 
@@ -142,11 +139,32 @@
 
 <p><a href="https://github.com/liluo/py-oauth2/wiki/Weibo">Demo for Weibo</a></p>
 
-<h2>License</h2>
+<p><a href="https://github.com/liluo/py-oauth2/wiki/QQ-OAuth-2.0">Demo for QQ</a></p>
+
+<p><a href="https://github.com/liluo/py-oauth2/wiki/Taobao-OAuth-2.0">Demo for Taobao</a></p>
+
+<p><a href="https://github.com/liluo/py-oauth2/wiki/Box.com">Demo for Box.com</a></p>
+
+<p><a href="https://github.com/liluo/py-oauth2/wiki/Instagram">Demo for Instagram</a></p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>MIT</p>
 
-<h2>Submitting a Pull Request</h2>
+<h2>
+<a name="authors" class="anchor" href="#authors"><span class="octicon octicon-link"></span></a>Authors</h2>
+
+<p>This is the list of authors of py-oauth2, sorted by time:</p>
+
+<ul>
+<li>liluo</li>
+<li>waawal</li>
+<li>qingfeng</li>
+<li>alswl</li>
+<li>Grigi</li>
+</ul><h2>
+<a name="submitting-a-pull-request" class="anchor" href="#submitting-a-pull-request"><span class="octicon octicon-link"></span></a>Submitting a Pull Request</h2>
 
 <ul>
 <li>Fork the repository.</li>
@@ -156,17 +174,11 @@
 <li>Submit a pull request.</li>
 </ul>
       </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Py-oauth2 maintained by <a href="https://github.com/liluo">liluo</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
       </footer>
     </div>
-
-    
-
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
   </body>
 </html>
