@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import requests
+import json
 
 from .response import Response
 
@@ -12,7 +13,10 @@ class Request(object):
         self.headers = opts.pop('headers', {})
         self.parse = opts.pop('parse', 'json')
         self.files = opts.pop('files', {})
-        self.opts = opts
+        if 'content-type' in self.headers and self.headers['content-type'] == 'application/json' :
+            self.opts = json.dumps(opts)
+        else :
+            self.opts = opts
 
     def __repr__(self):
         return '<OAuth2 Request>'

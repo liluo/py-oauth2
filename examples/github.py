@@ -24,3 +24,8 @@ print '-' * 80
 print 'get user info' 
 ret = access_token.get('/user')
 print ret.parsed
+
+print '-' * 80
+print 'create a repos'
+ret = access_token.post('/user/repos', name = '__testrepost__', headers = {'content-type' : 'application/json'})
+print ret.parsed
