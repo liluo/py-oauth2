@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import requests
 import json
+import requests
 
 from .response import Response
 
@@ -13,9 +13,9 @@ class Request(object):
         self.headers = opts.pop('headers', {})
         self.parse = opts.pop('parse', 'json')
         self.files = opts.pop('files', {})
-        if 'content-type' in self.headers and self.headers['content-type'] == 'application/json' :
+        if self.headers.get('content-type') == 'application/json':
             self.opts = json.dumps(opts)
-        else :
+        else:
             self.opts = opts
 
     def __repr__(self):

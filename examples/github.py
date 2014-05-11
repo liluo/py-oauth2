@@ -4,8 +4,8 @@ KEY = ''
 SECRET = ''
 CALLBACK = ''
 
-client = Client(KEY, SECRET, 
-                site='https://api.github.com', 
+client = Client(KEY, SECRET,
+                site='https://api.github.com',
                 authorize_url='https://github.com/login/oauth/authorize',
                 token_url='https://github.com/login/oauth/access_token')
 
@@ -21,11 +21,11 @@ access_token = client.auth_code.get_token(code, redirect_uri=CALLBACK, parse='qu
 print 'token', access_token.headers
 
 print '-' * 80
-print 'get user info' 
+print 'get user info'
 ret = access_token.get('/user')
 print ret.parsed
 
 print '-' * 80
 print 'create a repos'
-ret = access_token.post('/user/repos', name = '__testrepost__', headers = {'content-type' : 'application/json'})
+ret = access_token.post('/user/repos', name='test_repo', headers={'content-type': 'application/json'})
 print ret.parsed
