@@ -4,22 +4,22 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = 'py-oauth2',
-    version = '0.0.8',
-    keywords = ('Python', 'pyoauth2', 'OAuth2', 'Douban', 'GitHub', 'Weibo'),
-    description = 'A Python wrapper for the OAuth 2.0 specification.',
-    long_description = open('README.rst').read(),
-    license = 'MIT License',
+    name='py-oauth2',
+    version='0.0.9',
+    keywords=('Python', 'pyoauth2', 'OAuth2', 'Douban', 'GitHub', 'Weibo'),
+    description='A Python wrapper for the OAuth 2.0 specification.',
+    long_description=open('README.rst').read(),
+    license='MIT License',
 
-    url = 'https://github.com/liluo/py-oauth2',
-    author = 'liluo',
-    author_email = 'i@liluo.org',
+    url='https://github.com/liluo/py-oauth2',
+    author='liluo',
+    author_email='i@liluo.org',
 
-    packages = find_packages(),
-    include_package_data = True,
-    platforms = 'any',
-    install_requires = ['requests'],
-    classifiers = [
+    packages=find_packages(),
+    include_package_data=True,
+    platforms='any',
+    install_requires=['requests'],
+    classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',

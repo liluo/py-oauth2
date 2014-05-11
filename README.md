@@ -128,6 +128,7 @@ This is the list of authors of py-oauth2, sorted by time:
 * qingfeng
 * alswl
 * Grigi
+* skiyo
 
 ## Submitting a Pull Request
 * Fork the repository.
