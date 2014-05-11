@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .base import Base
 
+
 class AuthCode(Base):
 
     def __repr__(self):
@@ -9,7 +10,7 @@ class AuthCode(Base):
     def authorize_params(self, **params):
         params.update({'response_type': 'code', 'client_id': self.client.id})
         return params
-    
+
     def authorize_url(self, **params):
         params = self.authorize_params(**params)
         return self.client.authorize_url(params)

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*
 
+
 class Base(object):
 
     def __init__(self, client):
@@ -7,4 +8,4 @@ class Base(object):
 
     @property
     def client_params(self):
-        return { 'client_id': self.client.id, 'client_secret': self.client.secret }
+        return {'client_id': self.client.id, 'client_secret': self.client.secret}

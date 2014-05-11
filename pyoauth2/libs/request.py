@@ -10,7 +10,6 @@ class Request(object):
         self.method = method
         self.uri = uri
         self.headers = opts.pop('headers', {})
-        self.body = opts.pop('body', None)
         self.parse = opts.pop('parse', 'json')
         self.files = opts.pop('files', {})
         self.opts = opts
