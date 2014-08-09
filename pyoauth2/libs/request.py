@@ -7,12 +7,30 @@ from .response import Response
 
 class Request(object):
 
-    def __init__(self, method, uri, **opts):
+    def __init__(self, method, uri,
+                 headers=None,
+                 files=None,
+                 timeout=None,
+                 allow_redirects=True,
+                 proxies=None,
+                 hooks=None,
+                 stream=None,
+                 verify=None,
+                 cert=None,
+                 parse='json',
+                 **opts):
         self.method = method
         self.uri = uri
-        self.headers = opts.pop('headers', {})
-        self.parse = opts.pop('parse', 'json')
-        self.files = opts.pop('files', {})
+        self.headers = headers or {}
+        self.files = files
+        self.timeout = timeout
+        self.allow_redirects = allow_redirects
+        self.proxies = proxies
+        self.hooks = hooks
+        self.stream = stream
+        self.verify = verify
+        self.cert = cert
+        self.parse = parse
         if self.headers.get('content-type') == 'application/json':
             self.opts = json.dumps(opts)
         else:
@@ -22,13 +40,29 @@ class Request(object):
         return '<OAuth2 Request>'
 
     def request(self):
+        data = params = None
         if self.method in ('POST', 'PUT'):
-            response = requests.request(self.method, self.uri, data=self.opts, files=self.files, headers=self.headers)
+            data = self.opts
         else:
-            response = requests.request(self.method, self.uri, params=self.opts, headers=self.headers)
+            params = self.opts
+        response = requests.request(self.method, self.uri,
+                                    params=params,
+                                    data=data,
+                                    headers=self.headers,
+                                    files=self.files,
+                                    timeout=self.timeout,
+                                    allow_redirects=self.allow_redirects,
+                                    proxies=self.proxies,
+                                    hooks=self.hooks,
+                                    stream=self.stream,
+                                    verify=self.verify,
+                                    cert=self.cert)
+
+        # Supported download large file
+        if self.stream:
+            return response
 
         response = Response(response, parse=self.parse)
-
         status = response.status_code
         #TODO raise error
         if status in (301, 302, 303, 307):
