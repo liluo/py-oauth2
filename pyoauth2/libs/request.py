@@ -58,10 +58,6 @@ class Request(object):
                                     verify=self.verify,
                                     cert=self.cert)
 
-        # Supported download large file
-        if self.stream:
-            return response
-
         response = Response(response, parse=self.parse)
         status = response.status_code
         #TODO raise error

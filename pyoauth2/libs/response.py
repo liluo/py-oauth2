@@ -22,7 +22,7 @@ def _check_expires_in(ret):
 class Response(object):
 
     def __init__(self, response, **opts):
-        self.resp = response
+        self.response = self.resp = response
         self.status_code = self.status = response.status_code
         self.reason = response.reason
         self.content_type = response.headers.get('content-type')
