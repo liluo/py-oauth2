@@ -3,6 +3,10 @@ import time
 from .utils import urlparse
 
 
+class AccessTokenException(BaseException):
+    pass
+
+
 class AccessToken(object):
 
     def __init__(self, client, token, **opts):
@@ -36,7 +40,7 @@ class AccessToken(object):
 
     def refresh(self, **opts):
         if not getattr(self, 'refresh_token', None):
-            raise 'A refresh_token is not available'
+            raise AccessTokenException('A refresh_token is not available')
 
         opts = {'client_id': self.client.id,
                 'client_secret': self.client.secret,
@@ -86,6 +90,6 @@ class AccessToken(object):
             else:
                 opts['body'] += "&%s=%s" % (self.opts['param_name'], self.token)
         else:
-            raise "invalid :mode option of %s" % (self.opts['param_name'])
+            raise AccessTokenException("invalid :mode option of %s" % self.opts['param_name'])
 
         return opts
